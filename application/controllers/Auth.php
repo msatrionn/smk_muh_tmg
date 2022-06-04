@@ -28,7 +28,6 @@ class Auth extends CI_Controller{
 	public function register(){
 
 		$this->session->set_flashdata('msg');
-		print_r($this->session->flashdata('msg'));
     $this->load->view('register_view');
   }
 	public function register_save(){
