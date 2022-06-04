@@ -8,16 +8,10 @@ class Alumni extends CI_Controller
 	}
 	public function index(){
 		if($this->session->userdata('role') == 'alumni') {
-			$data['alumni'] = $this->model->index('alumni')->result();
-			$this->load->view('layouts/head_alumni.php');
-			$this->load->view('alumni/index.php', $data);
-			$this->load->view('layouts/foot.php');
-		}
-		elseif( $this->session->userdata('role') == 'admin'){
-			$data['alumni'] = $this->model->index('alumni')->result();
-			$this->load->view('layouts/head_admin.php');
-			$this->load->view('alumni/index.php', $data);
-			$this->load->view('layouts/foot.php');	
+			$data['alumni'] = $this->model->index('alumni')->row();
+			$this->load->view('clients/layouts/header.php');
+			$this->load->view('clients/profil.php', $data);
+			$this->load->view('clients/layouts/footer.php');
 		}
 		else{
 			redirect ('auth/index');
@@ -56,9 +50,9 @@ class Alumni extends CI_Controller
 
 	public function edit_view($id){
 		$data['alumni']=$this->model->get_alumni_edit($id);
-		$this->load->view('layouts/head_admin.php');
-		$this->load->view('alumni/edit',$data);
-		$this->load->view('layouts/foot.php');
+		$this->load->view('clients/layouts/header.php');
+		$this->load->view('clients/edit_profil.php', $data);
+		$this->load->view('clients/layouts/footer.php');
 	}
 
 	public function update(){

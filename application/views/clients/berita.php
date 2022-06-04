@@ -2,123 +2,144 @@
 .berita{
 	margin-top: 650px;
 }
-.mt-50 {
-    margin-top: 50px
+a:hover{
+ text-decoration:none;    
 }
 
-.mb-50 {
-    margin-bottom: 50px
+.widget.single-news {
+    margin-bottom: 20px;
+    position: relative;
 }
 
-.card-header:not([class*=bg-]):not([class*=alpha-]) {
-    background-color: transparent;
-    padding-top: 1.25rem
-}
-.media-title a{
-	color: #000 ;
-	font-weight: bolder;
-	font-size: 25px;
+.widget.single-news .image img {
+	object-fit: cover;
+    display: block;
+    width: 100%;
 }
 
-.header-elements-inline {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap
+.widget.single-news .image .gradient {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…IxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjbGVzc2hhdC1nZW5lcmF0ZWQpIiAvPjwvc3ZnPg==);
+    background-image: -webkit-linear-gradient(bottom, #000000 0%, rgba(0, 0, 0, 0.05) 100%);
+    background-image: -moz-linear-gradient(bottom, #000000 0%, rgba(0, 0, 0, 0.05) 100%);
+    background-image: -o-linear-gradient(bottom, #000000 0%, rgba(0, 0, 0, 0.05) 100%);
+    background-image: linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.05) 100%);
 }
 
-a {
-    text-decoration: none !important;
-    color: red
+.widget.single-news .details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
 }
 
-.img-preview {
-    max-height: 5rem
+.widget.single-news .details .category {
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }
-.shadows{
-    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    transition: all .55s ease-in-out;
-  
+
+.widget.single-news .details .category a {
+    color: #fff;
+    zoom: 1;
+    -webkit-opacity: 0.5;
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    filter: alpha(opacity=50);
+}
+
+.widget.single-news .details h3 {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+    font-size: 19px;
+}
+
+.widget.single-news .details h3 a {
+    color: #fff;
+    zoom: 1;
+    -webkit-opacity: 0.8;
+    -moz-opacity: 0.8;
+    opacity: 0.8;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+    filter: alpha(opacity=80);
+}
+
+.widget.single-news .details:hover time {
+    position: relative;
+    display: block;
+    color: #fff;
+    font-size: 13px;
+    margin-bottom: -20px;
+    -webkit-transition: all 350ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    -moz-transition: all 350ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    -o-transition: all 350ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    transition: all 350ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    zoom: 1;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    filter: alpha(opacity=0);
+}
+.text-desc {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+.titl{
+	text-align: center;
+}
+.line{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.inner-line{
+	text-align: center;
+	margin: 0 auto;
+	width: 70%;
+	height: 2px;
+	border-radius: 50px;
+	background: #000;
 }
 </style>
     
-<div class="container d-flex justify-content-center mt-50 mb-50">
-    <div class="card shadows">
-        <div class="card-header header-elements-inline">
-            <h6 class="card-title" style="text-align: center;width:100%">Review Kegiatan SMK Muhammadiyah 1 Temanggung</h6>
-            <div class="header-elements">
-                <div class="list-icons mb-2"> <a class="fa fa-close" data-action="collapse" data-abc="true"></a> </div>
-            </div>
-        </div>
-        <div class="card-body pb-0">
-            <div class="row">
-                <div class="col-xl-12">
-				<?php foreach ($data->result() as $row) :?>
-				
-                    <div class="media flex-column flex-sm-row mt-0 mb-3">
-                        <div class="mr-sm-3 mb-2 mb-sm-0">
-                            <div class="card-img-actions"> <a href="#" data-abc="true"> 
-								<img src="<?php echo base_url('file/news/'.$row->foto) ?>" width="200px" style="object-fit: cover;" class="img-fluid img-preview rounded" alt=""> </a> </div>
-                        </div>
-						
-                        <div class="media-body">
-                            <h6 class="media-title"><a href="#" data-abc="true"><?php echo $row->judul ?></a></h6>
-                            <ul class="list-inline list-inline-dotted text-muted mb-2">
-                                <li class="list-inline-item"><i class="fa fa-book mr-2"></i><?php echo $row->created_at ?></a></li>
-                            </ul>
-							<?php echo $row->deskripsi ?></a>
-                        </div>
-                    </div>
-					<?php endforeach ?>
-                    <!-- <div class="media flex-column flex-sm-row mt-0 mb-3">
-                        <div class="mr-sm-3 mb-2 mb-sm-0">
-                            <div class="card-img-actions"> <a href="#" data-abc="true"> <img src="https://i.imgur.com/I2Gq4ML.jpg" class="img-fluid img-preview rounded" alt=""> </a> </div>
-                        </div>
-                        <div class="media-body">
-                            <h6 class="media-title"><a href="#" data-abc="true">Hybris Developer</a></h6>
-                            <ul class="list-inline list-inline-dotted text-muted mb-2">
-                                <li class="list-inline-item"><i class="fa fa-video-camera mr-2"></i> Video tutorials</li>
-                            </ul> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        </div>
-                    </div> -->
-                </div>
-                <!-- <div class="col-xl-6">
-                    <div class="media flex-column flex-sm-row mt-0 mb-3">
-                        <div class="mr-sm-3 mb-2 mb-sm-0">
-                            <div class="card-img-actions"> <a href="#" data-abc="true"> <img src="https://i.imgur.com/4Iu9qtM.jpg" class="img-fluid img-preview rounded" alt=""> </a> </div>
-                        </div>
-                        <div class="media-body">
-                            <h6 class="media-title"><a href="#" data-abc="true">React Native 2nd Editions</a></h6>
-                            <ul class="list-inline list-inline-dotted text-muted mb-2">
-                                <li class="list-inline-item"><i class="fa fa-video-camera mr-2"></i> Video tutorials</li>
-                            </ul> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        </div>
-                    </div>
-                    <div class="media flex-column flex-sm-row mt-0 mb-3">
-                        <div class="mr-sm-3 mb-2 mb-sm-0">
-                            <div class="card-img-actions"> <a href="#" data-abc="true"> <img src="https://i.imgur.com/8pHTmIb.jpg" class="img-fluid img-preview rounded" alt=""> </a> </div>
-                        </div>
-                        <div class="media-body">
-                            <h6 class="media-title"><a href="#" data-abc="true">Python Architect 3rd Edition</a></h6>
-                            <ul class="list-inline list-inline-dotted text-muted mb-2">
-                                <li class="list-inline-item"><i class="fa fa-question-circle mr-2"></i> FAQ section</li>
-                            </ul> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-			<div class="row">
-				<div class="col">
-					<!--Tampilkan pagination-->
-					<?php echo $pagination; ?>
-				</div>
+<h2 class="titl">Review Berita SMK Muhammadiyah 1 Temanggung</h2>
+<div class="line">
+	<div class="inner-line"></div>
+</div>
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+	<?php foreach ($data->result() as $row) :?>
+		<div class="col-sm-4">
+		<div class="widget single-news">
+			<div class="image">
+			<img src="<?php echo base_url('file/news/'.$row->foto) ?>" height="200px" width="100%"  class="img-responsive">
+			<span class="gradient"></span>
 			</div>
-        </div>
-    </div>
+			<div class="details">
+			<div class="category"><a href=""><?php echo $row->judul ?></a></div>
+			<h3><a href="<?php echo base_url('homepage/news_detail/'.$row->id) ?>" class="text-desc"><?php echo $row->deskripsi ?></a></h3>
+			<time><?php echo $row->created_at ?></time>
+			</div>
+		</div>
+		</div>
+		<?php endforeach ?>
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		<!--Tampilkan pagination-->
+		<?php echo $pagination; ?>
+	</div>
 </div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

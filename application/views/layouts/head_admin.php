@@ -110,38 +110,31 @@
               </p>
             </a>
           </li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
             <a href="<?php echo base_url('alumni/index') ?>" class="nav-link">
               <i class="nav-icon fa fa-user"></i>
               <p>
 								Data Alumni
               </p>
             </a>
-          </li>
+          </li> -->
 					<li class="nav-item">
-            <a href="<?php echo base_url('perusahaan/index') ?>" class="nav-link">
+            <a href="<?php echo base_url('admin/user') ?>" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
               <p>
-								Data Perusahaan
+								Data User
               </p>
             </a>
           </li>
 					<li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+            <a href="<?php echo base_url('struktur/index') ?>" class="nav-link">
               <i class="nav-icon fa fa-university"></i>
               <p>
-                Mitra Kerja BKK
+								Struktur
               </p>
             </a>
           </li>
-					<li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon fa fa-envelope"></i>
-              <p>
-                Info Lowongan
-              </p>
-            </a>
-          </li>
+				
 					<li class="nav-item">
             <a href="<?php echo base_url('auth/logout') ?>"class="nav-link">
               <i class="nav-icon fa fa-sign-out-alt"></i>

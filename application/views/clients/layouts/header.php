@@ -65,10 +65,16 @@
 			<img src="<?php echo base_url('file/smk.png') ?>" width="50px" alt="" style="">
 			<span style="color:#fff;text-align:center" >SMK Muhammadiyah 1 Temanggung</span>
 			<?php if($this->session->userdata('role') == 'alumni') { ?>
-					<a href="<?php echo base_url('alumni/index') ?>" class="btn btn-success ml-2"><i class="nav-icon fas fa-dashboard"></i> Dashboard</a>
+					<a href="<?php echo base_url('alumni/index') ?>" class="btn btn-success ml-2"><i class="nav-icon fas fa-dashboard"></i> Profile</a>
+			<a href="<?php echo base_url('auth/logout') ?>" class="btn btn-danger ml-2"><i class="nav-icon fas fa-sign-out-alt"></i> Logout</a>
+			<?php }elseif($this->session->userdata('role') == 'perusahaan'){?>
+					<a href="<?php echo base_url('perusahaan/index') ?>" class="btn btn-success ml-2"><i class="nav-icon fas fa-sign-in-alt"></i> Profile</a>
+			<a href="<?php echo base_url('auth/logout') ?>" class="btn btn-danger ml-2"><i class="nav-icon fas fa-sign-out-alt"></i> Logout</a>
 			<?php }elseif($this->session->userdata('role') == 'admin'){?>
 					<a href="<?php echo base_url('admin/index') ?>" class="btn btn-success ml-2"><i class="nav-icon fas fa-sign-in-alt"></i> Dashboard</a>
-			<?php }else{?>
+			<a href="<?php echo base_url('auth/logout') ?>" class="btn btn-danger ml-2"><i class="nav-icon fas fa-sign-out-alt"></i> Logout</a>
+			<?php }
+			else{?>
 					<a href="<?php echo base_url('auth/index') ?>" class="btn btn-success ml-2"><i class="nav-icon fas fa-sign-in-alt"></i> Login</a>
 			<?php } ?>
             </li>

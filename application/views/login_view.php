@@ -63,12 +63,12 @@
 				
 				<!-- /.social-auth-links -->
 				<p class="mb-0">
-					<a href="register.html" class="text-center">Daftar Baru</a>
+					<a href="<?php echo base_url('auth/register') ?>" class="text-center">Daftar Baru</a>
 				</p>
 				<div>
 				<div class="row">
 					<div class="col-md-9 mt-4">
-						<button type="submit" class="btn btn-primary btn-block">Sign In</button>
+						<button type="submit" class="btn btn-primary btn-block">Masuk</button>
 					</div>
 					<div class="col-md-3 mt-4">
 						<a href="<?php echo base_url('homepage/index') ?>" class="btn btn-success">Halaman utama</a>

@@ -4,12 +4,13 @@
     transition: all .55s ease-in-out;
   
 	}
-	.text-desc{
-		white-space: nowrap; 
-		width: 100%; 
-		overflow: hidden;
-		text-overflow: ellipsis; 
-	}
+	.text-desc {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 4; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
 </style>
 <section class="lowongan" style="min-height: 500px;">
 <img src="<?php echo base_url('file/11.jpeg') ?>" width="100%" height="400px" style="object-fit: cover;" alt="">
@@ -22,7 +23,7 @@
 				<div class="col-md-5 shadows pt-2 mt-4" style="min-width: 540px;">
 					<div class="row">
 						<div class="col-md-5">
-							<img src="<?php echo base_url($value->foto_perusahaan) ?>" width="100%" alt="">
+						<img src="<?php echo base_url('file/perusahaan/'.$value->foto_perusahaan) ?>" width="100%" alt="">
 						</div>
 						<div class="col-md-7">
 							<h4><?= $value->judul ?></h4>

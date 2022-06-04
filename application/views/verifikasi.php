@@ -1,0 +1,104 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+<style>
+	body,
+html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(255, 10, 45, 0.85);
+  font-family: 'Montserrat', sans-serif;
+  color: #fff
+}
+
+html {
+  background: url('https://static.pexels.com/photos/818/sea-sunny-beach-holiday.jpg');
+  background-size: cover;
+  background-position: bottom
+}
+
+.error {
+  text-align: center;
+  padding: 16px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%)
+}
+
+h1 {
+  margin: -10px 0 -30px;
+  font-size: calc(17vw + 40px);
+  opacity: .8;
+  letter-spacing: -17px;
+}
+
+p {
+  opacity: .8;
+  font-size: 20px;
+  margin: 8px 0 38px 0;
+  font-weight: bold
+}
+
+input,
+button,
+input:focus,
+button:focus {
+  border: 0;
+  outline: 0!important;
+}
+
+input {
+  width: 300px;
+  padding: 14px;
+  max-width: calc(100% - 80px);
+  border-radius: 6px 0 0 6px;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+}
+
+button {
+  width: 40px;
+  padding: 14.5px 16px 14.5px 12.5px;
+  vertical-align: top;
+  border-radius: 0 6px 6px 0;
+  color: grey;
+  background: silver;
+  cursor: pointer;
+  transition: all 0.4s
+}
+
+button:hover {
+  color: white;
+  background: #9A5C32
+}
+
+.fa-arrow-left {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  font-size: 2em;
+  color:white;
+  text-decoration:none
+}
+</style>
+<a href="" class="fa fa-arrow-left"></a>
+<div class="error">
+  <h1>500</h1>
+  <p>Hubungi Admin Untuk verifikasi</p>
+  <a href="<?php echo base_url('auth/logout') ?>" style="background:limegreen; border-radius: 10px; padding:20px;text-decoration:none;color:#fff">Logout</a>
+</div>
+
+</body>
+</html>

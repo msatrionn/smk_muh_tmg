@@ -12,7 +12,7 @@
 	}
 </style>
 <section class="lowongan" style="min-height: 500px;">
-<img src="<?php echo base_url($lowongan->foto_perusahaan) ?>" width="100%" height="400px" style="object-fit: cover;" alt="">
+<img src="<?php echo base_url('file/perusahaan/'.$lowongan->foto_perusahaan) ?>" width="100%" height="400px" style="object-fit: cover;" alt="">
 
 	<h1 class="text-center mt-4 my-4">Lowongan</h1>
 	<div class="container">
@@ -26,9 +26,11 @@
 					</div>
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="">Input CV</label>
-						<form action="<?php echo base_url('lamaran/simpan') ?>" method="post" enctype="multipart/form-data">
-						<input type="file" name="cv" class="form-control col-md-12"></a>
+						<?php if ($this->session->userdata('role')=='alumni' && $lamaran == null) {?>
+							<label for="">Input CV</label>
+							<form action="<?php echo base_url('lamaran/simpan') ?>" method="post" enctype="multipart/form-data">
+							<input type="file" name="cv" class="form-control col-md-12"></a>
+						<?php } ?>
 					</div>
 				</div>
 				<div class="row">
@@ -41,6 +43,7 @@
 						<?= $lowongan->deskripsi ?>
 					</div>
 				</div>
+				<?php if ($this->session->userdata('role')=='alumni' && $lamaran == null) {?>
 					<textarea class="form-control col-md-12" name="isi_lamaran" id="isid" rows="4" placeholder="Deskripsikan tentang anda" maxlength="500"></textarea>
 					(<span class="jumlah">0</span>/500)
 					<div class="row"  style="width: 100%; display:flex;justify-content:center">
@@ -51,6 +54,27 @@
 						</div>
 					</form>
 				</div>
+				<?php }elseif($this->session->userdata('role')=='alumni' && $lamaran != null){ ?>
+					<hr class="mt-3 my-3">
+					Lamaran yang dikirim
+					<p>CV</p>
+					Keterangan : <?php echo $lamaran->keterangan_kandidat ?>
+					<div class="mt-4 my-4 col-md-12 text-center">
+						<div class="mt-4 my-4 col-md-12 text-center"><i>Sudah dilamar</i></div>
+					</div>
+					<?php }elseif($this->session->userdata('role')=='perusahaan' && $lamaran != null){ ?>
+						<div class="mt-4 my-4 col-md-12 text-center">
+							<a href="<?php echo base_url('hasil/index') ?>" class="btn btn-primary">Lihat Kandidat</a>
+						</div>
+					<?php }elseif($this->session->userdata('role')=='admin'){ ?>
+						<div class="mt-4 my-4 col-md-12 text-center">
+							<h2 class="alert-info">Admin tidak dapat melamar</h2>
+						</div>
+					<?php }else{ ?>
+						<div class="mt-4 my-4 col-md-12 text-center">
+							<a href="<?php echo base_url('auth/index') ?>" class="btn btn-primary">Login untuk melamar</a>
+						</div>
+						<?php }?>
 			</div>
 		</div>
 	</div>

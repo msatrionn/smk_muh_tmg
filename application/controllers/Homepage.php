@@ -14,7 +14,7 @@ class Homepage extends CI_Controller
 	{
 		$config['base_url'] = site_url('homepage/index'); //site url
         $config['total_rows'] = $this->db->count_all('berita'); //total row
-        $config['per_page'] = 3;  //show record per halaman
+        $config['per_page'] = 6;  //show record per halaman
         $config["uri_segment"] = 3;  // uri parameter
         $choice = $config["total_rows"] / $config["per_page"];
         $config["num_links"] = floor($choice);
@@ -54,6 +54,13 @@ class Homepage extends CI_Controller
 
 	}
 
+	public function news_detail($id){
+		$data['detail']= $this->db->where('id',$id)->get('berita')->row();
+		$this->load->view('clients/layouts/header.php');
+		$this->load->view('clients/detail_berita.php',$data);
+		$this->load->view('clients/layouts/footer.php');
+	}
+
 	
 	public function dashboard_example()
 	{
@@ -83,6 +90,11 @@ class Homepage extends CI_Controller
 		->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
 		->where('id_lowongan',$id)
 		->get('lowongan')->row();
+		$data['lamaran'] = $this->db
+			->join('lowongan','lowongan.id_lowongan=lamaran.id_lowongan')
+			->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
+			->where('lamaran.id_lowongan',$id)
+			->get('lamaran')->row();
 		$this->load->view('clients/layouts/header.php');
 		$this->load->view('clients/lowongan-detail.php',$data);
 		$this->load->view('clients/layouts/footer.php');

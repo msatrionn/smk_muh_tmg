@@ -2,7 +2,7 @@
 class M_Alumni extends CI_Model
 {
 	public function index($table){
-		return $this->db->get($table);
+		return $this->db->where('id_user',$this->session->userdata('id_user'))->get($table);
 	}
 	function save_post_data($table,$data){
 		return $this->db->insert($table, $data);

@@ -6,18 +6,29 @@ class Perusahaan extends CI_Controller
 		parent::__construct();
 		$this->load->model('M_Perusahaan', 'model');
 	}
+	// public function index(){
+	// 	if($this->session->userdata('role') == 'perusahaan' ) {
+	// 		$data['perusahaan'] = $this->model->index('perusahaan')->result();
+	// 		$this->load->view('layouts/head_perusahaan.php');
+	// 		$this->load->view('perusahaan/index.php', $data);
+	// 		$this->load->view('layouts/foot.php');
+	// 	}
+	// 	elseif( $this->session->userdata('role') == 'admin'){
+	// 		$data['perusahaan'] = $this->model->index('perusahaan')->result();
+	// 		$this->load->view('layouts/head_admin.php');
+	// 		$this->load->view('perusahaan/index.php', $data);
+	// 		$this->load->view('layouts/foot.php');	
+	// 	}
+	// 	else{
+	// 		$this->load->view('verifikasi.php');
+	// 	}
+	// }
 	public function index(){
 		if($this->session->userdata('role') == 'perusahaan') {
-			$data['perusahaan'] = $this->model->index('perusahaan')->result();
-			$this->load->view('layouts/head_perusahaan.php');
-			$this->load->view('perusahaan/index.php', $data);
-			$this->load->view('layouts/foot.php');
-		}
-		elseif( $this->session->userdata('role') == 'admin'){
-			$data['perusahaan'] = $this->model->index('perusahaan')->result();
-			$this->load->view('layouts/head_admin.php');
-			$this->load->view('perusahaan/index.php', $data);
-			$this->load->view('layouts/foot.php');	
+			$data['perusahaan'] = $this->model->index('perusahaan',$this->session->userdata('id_user'))->row();
+			$this->load->view('clients/layouts/header.php');
+			$this->load->view('clients/profil.php', $data);
+			$this->load->view('clients/layouts/footer.php');
 		}
 		else{
 			redirect ('auth/index');
@@ -44,7 +55,7 @@ class Perusahaan extends CI_Controller
 			$data = [
 			'nama_perusahaan' => $this->input->post('nama'),
 			'alamat_perusahaan' => $this->input->post('alamat'),
-			'no_hp' => $this->input->post('no_hp'),
+			'no_telp_perusahaan' => $this->input->post('no_telp'),
 			'foto_perusahaan' => $config['file_name'],
 			];
 			$this->model->save_post_data('perusahaan', $data);
@@ -56,9 +67,9 @@ class Perusahaan extends CI_Controller
 
 	public function edit_view($id){
 		$data['perusahaan']=$this->model->get_perusahaan_edit($id);
-		$this->load->view('layouts/head_admin.php');
-		$this->load->view('perusahaan/edit',$data);
-		$this->load->view('layouts/foot.php');
+		$this->load->view('clients/layouts/header.php');
+		$this->load->view('clients/edit_profil.php', $data);
+		$this->load->view('clients/layouts/footer.php');
 	}
 
 	public function update(){
@@ -86,7 +97,7 @@ class Perusahaan extends CI_Controller
 					$data = [
 						'nama_perusahaan' => $this->input->post('nama'),
 						'alamat_perusahaan' => $this->input->post('alamat'),
-						'no_hp' => $this->input->post('no_hp'),
+						'no_telp_perusahaan' => $this->input->post('no_telp'),
 						'foto_perusahaan' => $config['file_name'],
 					];
 					
@@ -110,7 +121,7 @@ class Perusahaan extends CI_Controller
 					$data = [
 						'nama_perusahaan' => $this->input->post('nama'),
 						'alamat_perusahaan' => $this->input->post('alamat'),
-						'no_hp' => $this->input->post('no_hp'),
+						'no_telp_perusahaan' => $this->input->post('no_telp'),
 						'foto_perusahaan' => $config['file_name'],
 					];
 					
@@ -127,7 +138,7 @@ class Perusahaan extends CI_Controller
 			$data = [
 				'nama_perusahaan' => $this->input->post('nama'),
 				'alamat_perusahaan' => $this->input->post('alamat'),
-				'no_hp' => $this->input->post('no_hp'),
+				'no_telp_perusahaan' => $this->input->post('no_telp'),
 			];
 			$this->model->updated_data($id, 'perusahaan', $data);
 			
