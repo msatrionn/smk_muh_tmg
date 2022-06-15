@@ -33,7 +33,6 @@ class Lowongan extends CI_Controller
 
         if (!$this->upload->do_upload('foto_perusahaan')) {
             $error = array('error' => $this->upload->display_errors());
-			var_dump($error);
 
         } else {
 			$data = [
