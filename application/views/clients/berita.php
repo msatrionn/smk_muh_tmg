@@ -113,6 +113,7 @@ a:hover{
 </style>
     
 <h2 class="titl">Review Berita SMK Muhammadiyah 1 Temanggung</h2>
+
 <div class="line">
 	<div class="inner-line"></div>
 </div>

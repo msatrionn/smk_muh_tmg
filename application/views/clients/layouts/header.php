@@ -57,6 +57,9 @@
 			<a class="nav-link" href="<?php echo base_url('homepage/lowongan') ?>">Lowongan</a>
 		</li>
 		<li class="nav-item">
+			<a class="nav-link" href="<?php echo base_url('latian/index') ?>">Latian</a>
+		</li>
+		<li class="nav-item">
 			<a class="nav-link" href="<?php echo base_url('homepage/mitra') ?>">Mitra</a>
 		</li>
         </ul>

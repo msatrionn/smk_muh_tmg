@@ -46,7 +46,6 @@ class Lamaran extends CI_Controller
 
 			if (!$this->upload->do_upload('cv')) {
 				$error = array('error' => $this->upload->display_errors());
-				var_dump($error);
 
 			} else {
 				$data = [
@@ -56,7 +55,8 @@ class Lamaran extends CI_Controller
 				'hasil' => 'Sedang direview perusahaan',
 				'cv' => $config['file_name'],
 				];
-				$this->model->save_lamaran('lamaran', $data);
+				$save=$this->model->save_lamaran('lamaran', $data);
+				print_r($save);
 
 				array('image_metadata' => $this->upload->data());
 				redirect('homepage/lowongan_detail/'.$this->input->post('lowongan'));

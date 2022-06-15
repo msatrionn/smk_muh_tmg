@@ -134,6 +134,15 @@
               </p>
             </a>
           </li>
+
+					<li class="nav-item">
+            <a href="<?php echo base_url('struktur/index') ?>" class="nav-link">
+              <i class="nav-icon fa fa-university"></i>
+              <p>
+								latian
+              </p>
+            </a>
+          </li>
 				
 					<li class="nav-item">
             <a href="<?php echo base_url('auth/logout') ?>"class="nav-link">

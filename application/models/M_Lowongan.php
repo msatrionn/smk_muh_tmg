@@ -22,4 +22,10 @@ class M_Lowongan extends CI_Model
 	{
 		return $this->db->where('id_perusahaan', $id)->delete($table);
 	}
+
+	public function get_user($id, $table)
+	{
+		return $this->db->where('user.id_user', $id)->join('user','perusahaan.id_user=user.id_user')->get($table);
+	}
+
 }

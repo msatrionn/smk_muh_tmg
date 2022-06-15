@@ -48,8 +48,13 @@
 					(<span class="jumlah">0</span>/500)
 					<div class="row"  style="width: 100%; display:flex;justify-content:center">
 						<div class="col-md-4">
-							<input type="hidden" name="alumni" value="<?php echo $this->session->userdata('id_user') ?>">
-							<input type="hidden" name="lowongan" value="<?php echo $lowongan->id_lowongan ?>">
+						<?php
+						if ($this->session->userdata('role')=='alumni') {?>
+							<input type="hidden" name="alumni" value="<?php echo $id_alumni ?>">
+						<?php 
+						}
+						?>
+						<input type="hidden" name="lowongan" value="<?php echo $lowongan->id_lowongan ?>">
 							<button type="submit" class="btn btn-primary mt-4 my-4 col-md-12">Lamar</a>
 						</div>
 					</form>
@@ -70,7 +75,7 @@
 						<div class="mt-4 my-4 col-md-12 text-center">
 							<h2 class="alert-info">Admin tidak dapat melamar</h2>
 						</div>
-					<?php }else{ ?>
+					<?php }elseif($this->session->userdata('id_user')==null){ ?>
 						<div class="mt-4 my-4 col-md-12 text-center">
 							<a href="<?php echo base_url('auth/index') ?>" class="btn btn-primary">Login untuk melamar</a>
 						</div>

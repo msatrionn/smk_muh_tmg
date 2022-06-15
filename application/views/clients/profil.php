@@ -50,6 +50,7 @@ a.profile-button:hover, a.profile:hover {
 					<?php if ($this->session->userdata('role')=='alumni') {?>
 						<?php $foto=$alumni->foto_alumni ?? "" ?>
 						<img src="<?= base_url('file/alumni/'.$foto) ?>" alt="John" style="width:100%">
+						
 						<h1><?= $alumni->nama_alumni ?></h1>
 						<p class="title-profile">Alumni SMK Muhammadiyah 1 Temanggung</p>
 						<p><?= $alumni->no_hp ?></p>
@@ -59,6 +60,7 @@ a.profile-button:hover, a.profile:hover {
 						<a href="#" class="profile"><i class="fa fa-facebook"></i></a>
 						<p><a href="<?php echo base_url('alumni/edit_view/'.$alumni->id_alumni) ?>" class="profile-button">Update Profil</a></p>
 						<p><a href="<?php echo base_url('lamaran/index/'.$alumni->id_alumni) ?>" class="profile-button" style="background:#4287f5;">Lihat Lamaran</a></p>
+					
 					<?php }elseif($this->session->userdata('role')=='perusahaan') {?>
 						<img src="<?= base_url('file/perusahaan/'.$perusahaan->foto_perusahaan) ?>" alt="John" style="width:100%">
 						<h1><?= $perusahaan->nama_perusahaan ?></h1>

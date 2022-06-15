@@ -14,8 +14,9 @@
 <section class="lowongan" style="min-height: 500px;">
 <img src="<?php echo base_url('file/11.jpeg') ?>" width="100%" height="400px" style="object-fit: cover;" alt="">
 
-	<h1 class="text-center mt-4 my-4">Lowongan</h1>
+<h1 class="text-center mt-4 my-4">Lowongan</h1>
 	<div class="container">
+		<a href="<?= base_url("lowongan/create_view") ?>" class="btn btn-success">Tambah Lowongan</a>
 		<div class="">
 			<div class="row" style="display: flex;justify-content: space-between;">
 			<?php foreach ($lowongan as $key => $value) { ?>
@@ -36,7 +37,8 @@
 				</div>
 				<div class="row pr-3 py-3">
 					<div class="col-md-4">
-					<span><i style="font-size: 12px;"><?php echo $value->created_at_lowongan ?></i></span>
+					<span><i style="font-size: 12px;">
+					<?php echo $value->created_at_lowongan ?></i></span>
 					</div>
 					<div class="col-md-4"></div>
 					<div class="col-md-4">

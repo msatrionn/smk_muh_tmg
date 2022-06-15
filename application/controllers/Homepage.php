@@ -95,6 +95,11 @@ class Homepage extends CI_Controller
 			->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
 			->where('lamaran.id_lowongan',$id)
 			->get('lamaran')->row();
+	
+			if ($this->session->userdata('role')=='alumni') {
+				$data['id_alumni']=$this->db->join("user","user.id_user=alumni.id_user")
+				->where("alumni.id_user",$this->session->userdata("id_user"))->get("alumni")->row()->id_alumni;
+			}
 		$this->load->view('clients/layouts/header.php');
 		$this->load->view('clients/lowongan-detail.php',$data);
 		$this->load->view('clients/layouts/footer.php');

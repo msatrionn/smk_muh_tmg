@@ -32,15 +32,15 @@
               <div class="card-body">
 								
 							<table id="example" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama Pengurus</th>
-                <th>Jabatan</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
+						<thead>
+								<tr>
+										<th>No</th>
+										<th>Nama Pengurus</th>
+										<th>Jabatan</th>
+										<th>Aksi</th>
+								</tr>
+						</thead>
+						<tbody>
 					
 					<?php 
 					$i=1;
