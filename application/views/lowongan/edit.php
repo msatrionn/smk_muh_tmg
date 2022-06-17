@@ -16,7 +16,6 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-			<div class="card">
 				<div class="container mt-4">
 				<form action="<?php echo base_url('lowongan/update') ?>" method="post" enctype="multipart/form-data">
 				<div class="form-group">
@@ -34,9 +33,8 @@
 					<button class="btn btn-success" type="submit">Submit</button>
 				</div>
 
-		</form>
+				</form>
 				</div>
-            </div>
       </div>
     </section>
     <!-- /.content -->

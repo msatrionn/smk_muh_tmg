@@ -11,15 +11,15 @@
 		text-overflow: ellipsis; 
 	}
 </style>
-<section class="lowongan" style="min-height: 500px;">
-<img src="<?php echo base_url('file/perusahaan/'.$lowongan->foto_perusahaan) ?>" width="100%" height="400px" style="object-fit: cover;" alt="">
+<section class="lowongan mt-4" style="min-height: 500px;">
+<h1 class="text-center"><?= $lowongan->nama_perusahaan ?></h1>
+<!-- <img src="<?php echo base_url('file/perusahaan/'.$lowongan->foto_perusahaan) ?>" width="100%" height="400px" style="object-fit: cover;" alt=""> -->
 	<div class="container">
 		<div class="row" style="display: flex;justify-content: space-between;">
 			<div class="col-md-12 shadows pt-2 mt-4">
 			<div class="row">
 				<div class="col-md-7">
-					<h4><?= $lowongan->judul ?></h4>
-					<span><?= $lowongan->nama_perusahaan ?></span>
+					<span><?= $lowongan->judul ?></span>
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-3">

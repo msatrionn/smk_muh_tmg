@@ -12,7 +12,7 @@
 	}
 </style>
 <section class="lowongan" style="min-height: 500px;">
-<img src="<?php echo base_url('file/11.jpeg') ?>" width="100%" height="400px" style="object-fit: cover;" alt="">
+<!-- <img src="<?php echo base_url('file/11.jpeg') ?>" width="100%" height="400px" style="object-fit: cover;" alt=""> -->
 
 <h1 class="text-center mt-4 my-4">Lowongan</h1>
 	<div class="container">

@@ -12,9 +12,9 @@
 	}
 </style>
 <section class="lowongan" style="min-height: 500px;">
-<img src="<?php echo base_url('file/perusahaan/'.$lowongan->foto_perusahaan) ?>" width="100%" height="400px" style="object-fit: cover;" alt="">
+<!-- <img src="<?php echo base_url('file/perusahaan/'.$lowongan->foto_perusahaan) ?>" width="100%" height="400px" style="object-fit: cover;" alt=""> -->
 
-	<h1 class="text-center mt-4 my-4">Lowongan</h1>
+	<h1 class="text-center mt-4 my-4"><?= $lowongan->nama_perusahaan ?></h1>
 	<div class="container">
 		<div class="">
 			<div class="row" style="display: flex;justify-content: space-between;">
@@ -22,7 +22,6 @@
 				<div class="row">
 					<div class="col-md-7">
 						<h4><?= $lowongan->judul ?></h4>
-						<span><?= $lowongan->nama_perusahaan ?></span>
 					</div>
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
