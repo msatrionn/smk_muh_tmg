@@ -41,7 +41,7 @@ class Perusahaan extends CI_Controller
 	}
 	public function save(){
 		$config['upload_path'] = './file/perusahaan';
-        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['allowed_types'] = 'jpg|png|jpeg|PNG|JPG|JPEG';
         $config['max_size'] = 3000;
 		$config['file_name'] = date('y-m-d:h:m:s').$_FILES['foto_perusahaan']['name']; 
 
@@ -75,14 +75,14 @@ class Perusahaan extends CI_Controller
 	public function update(){
 		$id=$this->input->post('id');
 		$config['upload_path'] = './file/perusahaan';
-        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['allowed_types'] = 'jpg|png|jpeg|PNG|JPG|JPEG';
         $config['max_size'] = 3000;
 		$config['file_name'] = date('y-m-d:h:m:s').$_FILES['foto_perusahaan']['name']; 
 		$data['perusahaan']=$this->model->get_perusahaan_edit($id);
 		if ($_FILES['foto_perusahaan']['name']) {
 			$config['upload_path'] = './file/perusahaan';
-			$config['allowed_types'] = 'jpg|png|jpeg';
-			$config['max_size'] = 3000;
+			$config['allowed_types'] = 'jpg|png|jpeg|PNG|JPG|JPEG';
+			$config['max_size'] = 30000;
 			$config['file_name'] = date('y-m-d:h:m:s').$_FILES['foto_perusahaan']['name']; 
 			$this->load->library('upload', $config);
 
@@ -108,7 +108,7 @@ class Perusahaan extends CI_Controller
 			}
 			else{
 				$config['upload_path'] = './file/perusahaan/';
-				$config['allowed_types'] = 'jpg|png|jpeg';
+				$config['allowed_types'] = 'jpg|png|jpeg|PNG|JPG|JPEG';
 				$config['max_size'] = 3000;
 				$config['file_name'] = date('y-m-d:h:m:s').$_FILES['foto_perusahaan']['name']; 
 				$this->load->library('upload', $config);

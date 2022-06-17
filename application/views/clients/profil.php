@@ -41,7 +41,6 @@ a.profile-button:hover, a.profile:hover {
 </style>
 
 <section class="mitra" style="min-height: 500px;">
-<img src="<?php echo base_url('file/11.jpeg') ?>" width="100%" height="400px" style="object-fit: cover;" alt="">
 
 	<h1 class="mt-4 my-4 text-center" >Profil </h1>
 	<div class="container-fluid">

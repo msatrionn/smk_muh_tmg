@@ -13,7 +13,7 @@
 		<div class="row">
 			<?php foreach($mitra as $key => $value) { ?>
 			<div class="col-md-4 mt-4" style="text-align: center;">
-				<img src="<?= base_url($value->foto_perusahaan) ?>" width="100%" height="230px" style="object-fit: cover;" alt="">
+				<img src="<?= base_url('file/perusahaan/'.$value->foto_perusahaan) ?>" width="100%" height="230px" style="object-fit: cover;" alt="">
 				<button class="btn btn-success my-3"  type="button" data-toggle="collapse" data-target="#multiCollapseExample<?= $value->id_perusahaan ?>" aria-expanded="false" aria-controls="multiCollapseExample1"><?= $value->nama_perusahaan ?></button>
 				<div class="collapse multi-collapse" id="multiCollapseExample<?= $value->id_perusahaan ?>">
 					<div class="card card-body">
