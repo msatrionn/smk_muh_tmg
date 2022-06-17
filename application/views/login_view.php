@@ -42,7 +42,6 @@
 			<?php if ($this->session->flashdata('msg')) { ?>
 				<div class="alert alert-danger"> <?= $this->session->flashdata('msg') ?> </div>
 			<?php } ?>
-			<?= $this->session->flashdata('msg') ?>
       <form action="<?php echo base_url('auth/login');?>" method="post">
         <div class="input-group mb-3">
           <input type="username" name="username" class="form-control" placeholder="Username">

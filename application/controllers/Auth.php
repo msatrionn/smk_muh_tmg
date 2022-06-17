@@ -24,52 +24,56 @@ class Auth extends CI_Controller{
 			$this->session->sess_destroy();
 			
 		}
-  }
+ 	}
 	public function register(){
-
-		$this->session->set_flashdata('msg');
-    $this->load->view('register_view');
-  }
+		$this->session->sess_destroy();
+    	$this->load->view('register_view');
+  	}
 	public function register_save(){
 		$user=$this->db->where('username',$this->input->post('nama_user'))->get('user')->row();
 		$user_data=$this->db->select_max('id_user')->get('user')->row()->id_user+1;
+		if (strlen($this->input->post('password'))<6) {
+			echo $this->session->set_flashdata('msg','Password harus terdiri lebih dari 6 karakter');
+			redirect('auth/register');
+		}else{
+			// if ($this->input->post('role')=='alumni'  && $user == null) {
+			// 	$data=[
+			// 		'username'=>$this->input->post('username'),
+			// 		'nama_user'=>$this->input->post('nama_user'),
+			// 		'password'=>md5($this->input->post('password')),
+			// 		'role'=>$this->input->post('role'),
+			// 	];
+			// 	$this->model->save_registrasi_data('user', $data);
+			// 	$data_alumni = [
+			// 		'id_user'=>$user_data,
+			// 		'nama_alumni' => $this->input->post('nama_user'),
+			// 		];
+			// 		$this->db->insert('alumni', $data_alumni);
+			// 	echo $this->session->set_flashdata('msg','Registrasi berhasil');
+			// 	redirect('auth/index');
+			// }
+			// elseif($this->input->post('role')=='perusahaan'   && $user == null){
+			// 	$data=[
+			// 		'username'=>$this->input->post('username'),
+			// 		'nama_user'=>$this->input->post('nama_user'),
+			// 		'password'=>md5($this->input->post('password')),
+			// 		'role'=>$this->input->post('role'),
+			// 	];
+			// 	$this->model->save_registrasi_data('user', $data);
+			// 	$data_alumni = [
+			// 		'id_user'=>$user_data,
+			// 		'nama_perusahaan' => $this->input->post('nama_user'),
+			// 		];
+			// 	$this->db->insert('perusahaan', $data_alumni);
+			// 	echo $this->session->set_flashdata('msg','Registrasi berhasil');
+			// 	redirect('auth/index');
+			// }
+			// else{
+			// 	echo $this->session->set_flashdata('msg','Registrasi Gagal, User sudah terdaftar');
+			// 	redirect('auth/index');
+			// }
+		}
 		
-		if ($this->input->post('role')=='alumni'  && $user == null) {
-			$data=[
-				'username'=>$this->input->post('username'),
-				'nama_user'=>$this->input->post('nama_user'),
-				'password'=>md5($this->input->post('password')),
-				'role'=>$this->input->post('role'),
-			];
-			$this->model->save_registrasi_data('user', $data);
-			$data_alumni = [
-				'id_user'=>$user_data,
-				'nama_alumni' => $this->input->post('nama_user'),
-				];
-				$this->db->insert('alumni', $data_alumni);
-			echo $this->session->set_flashdata('msg','Registrasi berhasil');
-			redirect('auth/index');
-		}
-		elseif($this->input->post('role')=='perusahaan'   && $user == null){
-			$data=[
-				'username'=>$this->input->post('username'),
-				'nama_user'=>$this->input->post('nama_user'),
-				'password'=>md5($this->input->post('password')),
-				'role'=>$this->input->post('role'),
-			];
-			$this->model->save_registrasi_data('user', $data);
-			$data_alumni = [
-				'id_user'=>$user_data,
-				'nama_perusahaan' => $this->input->post('nama_user'),
-				];
-				$this->db->insert('perusahaan', $data_alumni);
-			echo $this->session->set_flashdata('msg','Registrasi berhasil');
-			redirect('auth/index');
-		}
-		else{
-		echo $this->session->set_flashdata('msg','Registrasi Gagal, User sudah terdaftar');
-		redirect('auth/index');
-		}
 		
 		
   }
@@ -144,7 +148,7 @@ class Auth extends CI_Controller{
 }
 
 	public function logout(){
-			echo $this->session->set_flashdata('msg', '<p>Silahkan Login</p>' );
+	  echo $this->session->set_flashdata('msg', '<p>Silahkan Login</p>' );
       $this->session->sess_destroy();
       redirect('auth/index');
   }

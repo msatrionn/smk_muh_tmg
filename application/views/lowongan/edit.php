@@ -32,7 +32,6 @@
 				<div class="form-group">
 					<button class="btn btn-success" type="submit">Submit</button>
 				</div>
-
 				</form>
 				</div>
       </div>
