@@ -86,35 +86,85 @@ class Homepage extends CI_Controller
 	}
 
 	public function lowongan_detail($id){
-		$data['lowongan'] = $this->db
-		->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
-		->where('id_lowongan',$id)
-		->get('lowongan')->row();
-		$data['lamaran'] = $this->db
+		if ($this->session->userdata('id_user') != null && $this->session->userdata('role') =='alumni') {
+			$data['lowongan'] = $this->db
+			->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
+			->where('id_lowongan',$id)
+			->get('lowongan')->row();
+			$data['lamaran'] = $this->db
+				->join('lowongan','lowongan.id_lowongan=lamaran.id_lowongan')
+				->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
+				->join('alumni','alumni.id_alumni=lamaran.id_alumni')
+				->where('lamaran.id_lowongan',$id)
+				->where('alumni.id_user',$this->session->userdata('id_user'))
+				->get('lamaran')->row();
+			$data['cekLamar']=$this->db
 			->join('lowongan','lowongan.id_lowongan=lamaran.id_lowongan')
 			->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
 			->join('alumni','alumni.id_alumni=lamaran.id_alumni')
-			->where('lamaran.id_lowongan',$id)
 			->where('alumni.id_user',$this->session->userdata('id_user'))
 			->get('lamaran')->row();
-		$data['cekLamar']=$this->db
-		->join('lowongan','lowongan.id_lowongan=lamaran.id_lowongan')
-		->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
-		->join('alumni','alumni.id_alumni=lamaran.id_alumni')
-		->where('alumni.id_user',$this->session->userdata('id_user'))
-		->get('lamaran')->row();
-		if ($data['lamaran']->id_alumni??""==$data['cekLamar']->id_alumni ?? "") {
-			$data['validate_lamaran']= true;
-		}else{
-			$data['validate_lamaran']= false;
+			if ($data['lamaran']->id_alumni??""==$data['cekLamar']->id_alumni ?? "") {
+				$data['validate_lamaran']= true;
+			}else{
+				$data['validate_lamaran']= false;
+			}
+			if ($this->session->userdata('role')=='alumni') {
+				$data['id_alumni']=$this->db->join("user","user.id_user=alumni.id_user")
+				->where("alumni.id_user",$this->session->userdata("id_user"))->get("alumni")->row()->id_alumni;
+			}
+			$this->load->view('clients/layouts/header.php');
+			$this->load->view('clients/lowongan-detail.php',$data);
+			$this->load->view('clients/layouts/footer.php');
 		}
-		if ($this->session->userdata('role')=='alumni') {
-			$data['id_alumni']=$this->db->join("user","user.id_user=alumni.id_user")
-			->where("alumni.id_user",$this->session->userdata("id_user"))->get("alumni")->row()->id_alumni;
+		elseif($this->session->userdata('role') =='perusahaan'){
+			$data['lowongan'] = $this->db
+			->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
+			->where('id_lowongan',$id)
+			->get('lowongan')->row();
+			$data['lamaran'] = $this->db
+				->join('lowongan','lowongan.id_lowongan=lamaran.id_lowongan')
+				->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
+				->join('alumni','alumni.id_alumni=lamaran.id_alumni')
+				->where('lamaran.id_lowongan',$id)
+				->where('alumni.id_user',$this->session->userdata('id_user'))
+				->get('lamaran')->row();
+			$data['lamarancek'] = $this->db
+				->join('lowongan','lowongan.id_lowongan=lamaran.id_lowongan')
+				->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
+				->where('lamaran.id_lowongan',$id)
+				->get('lamaran')->row();
+			$data['cekLamar']=$this->db
+			->join('lowongan','lowongan.id_lowongan=lamaran.id_lowongan')
+			->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
+			->join('alumni','alumni.id_alumni=lamaran.id_alumni')
+			->where('alumni.id_user',$this->session->userdata('id_user'))
+			->get('lamaran')->row();
+			$data['id_lamaran']=$id;
+			if ($data['lamaran']!=null) {
+				if ($data['lamaran']->id_alumni ?? "" ==$data['cekLamar']->id_alumni ?? "") {
+					$data['validate_lamaran']= true;
+				}else{
+					$data['validate_lamaran']= false;
+				}
+			}
+			if ($this->session->userdata('role')=='alumni') {
+				$data['id_alumni']=$this->db->join("user","user.id_user=alumni.id_user")
+				->where("alumni.id_user",$this->session->userdata("id_user"))->get("alumni")->row()->id_alumni;
+			}
+			$this->load->view('clients/layouts/header.php');
+			$this->load->view('clients/lowongan-detail.php',$data);
+			$this->load->view('clients/layouts/footer.php');
 		}
-		$this->load->view('clients/layouts/header.php');
-		$this->load->view('clients/lowongan-detail.php',$data);
-		$this->load->view('clients/layouts/footer.php');
+		else{
+			$data['lowongan'] = $this->db
+			->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
+			->where('id_lowongan',$id)
+			->get('lowongan')->row();
+			$this->load->view('clients/layouts/header.php');
+			$this->load->view('clients/lowongan-detail.php',$data);
+			$this->load->view('clients/layouts/footer.php');
+		}
 
 	}
 	public function struktur(){

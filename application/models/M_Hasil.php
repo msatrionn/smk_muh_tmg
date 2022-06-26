@@ -1,7 +1,7 @@
 <?php
 class M_Hasil extends CI_Model 
 {
-	public function index($table){
+	public function index($table,$id){
 		return $this->db
 		->select('
 		lamaran.id_lamaran,
@@ -11,6 +11,7 @@ class M_Hasil extends CI_Model
 		->join('lowongan','lowongan.id_lowongan=lamaran.id_lowongan')
 		->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
 		->join('alumni','alumni.id_alumni=lamaran.id_alumni')
+		->where('id_lamaran',$id)
 		->get($table);	
 	}
 	public function update_data($id,$data,$table){

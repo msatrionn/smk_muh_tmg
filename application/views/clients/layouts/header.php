@@ -61,10 +61,10 @@
 			</li>
 		<?php } else { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo base_url('homepage/lowongan/index') ?>">Lowongan</a>
+				<a class="nav-link" href="<?php echo base_url('homepage/lowongan') ?>">Lowongan</a>
 			</li>
 		<?php } ?>
-		<?php if ($this->session->userdata('role')!='perusahaan') { ?>
+		<?php if ($this->session->userdata('id_user') != null && $this->session->userdata('role')!='perusahaan' && $this->session->userdata('role') !='admin' ) { ?>
 			<?php $alumni=$this->db
 			->join("user","user.id_user=alumni.id_user")
 			->where("alumni.id_user",$this->session->userdata("id_user"))
@@ -75,7 +75,7 @@
 				<a class="nav-link" href="<?php echo base_url('lamaran/index/'.$alumni) ?>">Lamaran Anda</a>
 			</li>
 		<?php } ?>
-		<?php if ($this->session->userdata('role')!='perusahaan') { ?>
+		<?php if ($this->session->userdata('id_user') == null or $this->session->userdata('role')!='perusahaan') { ?>
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo base_url('homepage/mitra') ?>">Mitra</a>
 			</li>

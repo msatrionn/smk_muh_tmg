@@ -70,9 +70,9 @@
 					<div class="mt-4 my-4 col-md-12 text-center"><i>Sudah dilamar</i></div>
 				</div>
 				<?php } ?>
-				<?php if($this->session->userdata('role')=='perusahaan' && $lamaran != null){ ?>
+				<?php if($this->session->userdata('role')=='perusahaan' && $lamarancek != null){ ?>
 					<div class="mt-4 my-4 col-md-12 text-center">
-						<a href="<?= base_url('hasil/index') ?>" class="btn btn-primary">Lihat Kandidat</a>
+						<a href="<?= base_url('hasil/index/'.$id_lamaran) ?>" class="btn btn-primary">Lihat Kandidat</a>
 					</div>
 				<?php }elseif($this->session->userdata('role')=='admin'){ ?>
 					<div class="mt-4 my-4 col-md-12 text-center">
