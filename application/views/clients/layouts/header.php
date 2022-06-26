@@ -12,6 +12,12 @@
     <title>SMK Muhammadiyah 1 Temanggung</title>
   </head>
   <style>
+	@import url("https://fonts.googleapis.com/css2?family=Anek+Malayalam&family=Poppins&display=swap");
+
+	body{
+		font-family: 'Anek Malayalam', sans-serif;
+		font-family: 'Poppins', sans-serif;
+	}
 	  .ml2 {
 	font-weight: 900;
 	font-size: 3.5em;
