@@ -93,13 +93,25 @@ class Homepage extends CI_Controller
 		$data['lamaran'] = $this->db
 			->join('lowongan','lowongan.id_lowongan=lamaran.id_lowongan')
 			->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
+			->join('alumni','alumni.id_alumni=lamaran.id_alumni')
 			->where('lamaran.id_lowongan',$id)
+			->where('alumni.id_user',$this->session->userdata('id_user'))
 			->get('lamaran')->row();
-	
-			if ($this->session->userdata('role')=='alumni') {
-				$data['id_alumni']=$this->db->join("user","user.id_user=alumni.id_user")
-				->where("alumni.id_user",$this->session->userdata("id_user"))->get("alumni")->row()->id_alumni;
-			}
+		$data['cekLamar']=$this->db
+		->join('lowongan','lowongan.id_lowongan=lamaran.id_lowongan')
+		->join('perusahaan','perusahaan.id_perusahaan=lowongan.id_perusahaan')
+		->join('alumni','alumni.id_alumni=lamaran.id_alumni')
+		->where('alumni.id_user',$this->session->userdata('id_user'))
+		->get('lamaran')->row();
+		if ($data['lamaran']->id_alumni??""==$data['cekLamar']->id_alumni ?? "") {
+			$data['validate_lamaran']= true;
+		}else{
+			$data['validate_lamaran']= false;
+		}
+		if ($this->session->userdata('role')=='alumni') {
+			$data['id_alumni']=$this->db->join("user","user.id_user=alumni.id_user")
+			->where("alumni.id_user",$this->session->userdata("id_user"))->get("alumni")->row()->id_alumni;
+		}
 		$this->load->view('clients/layouts/header.php');
 		$this->load->view('clients/lowongan-detail.php',$data);
 		$this->load->view('clients/layouts/footer.php');
@@ -113,11 +125,13 @@ class Homepage extends CI_Controller
 
 	}
 	public function mitra(){
-		$data['mitra'] = $this->db->get('perusahaan')->result();
-		$this->load->view('clients/layouts/header.php');
-		$this->load->view('clients/mitra.php',$data);
-		$this->load->view('clients/layouts/footer.php');
-		
-
+		if (($this->session->userdata('role')!='perusahaan')) {
+			$data['mitra'] = $this->db->get('perusahaan')->result();
+			$this->load->view('clients/layouts/header.php');
+			$this->load->view('clients/mitra.php',$data);
+			$this->load->view('clients/layouts/footer.php');
+		}else{
+			redirect('homepage/index');
+		}
 	}
 }

@@ -37,29 +37,30 @@ class Lamaran extends CI_Controller
 		}
 	}
 	public function simpan(){
+		$nama_file=str_replace(" ","_",$_FILES['cv']['name']);
 		$config['upload_path'] = './file/cv';
-			$config['allowed_types'] = 'jpg|png|jpeg|pdf';
-			$config['max_size'] = 3000;
-			$config['file_name'] = date('y-m-d:h:m:s').$_FILES['cv']['name']; 
+		$config['allowed_types'] = 'jpg|png|jpeg|pdf';
+		$config['max_size'] = 3000;
+		$config['file_name'] = date('y-m-d:h:m:s').$nama_file; 
 
-			$this->load->library('upload', $config);
+		$this->load->library('upload', $config);
 
-			if (!$this->upload->do_upload('cv')) {
-				$error = array('error' => $this->upload->display_errors());
+		if (!$this->upload->do_upload('cv')) {
+			$error = array('error' => $this->upload->display_errors());
 
-			} else {
-				$data = [
-				'id_lowongan' => $this->input->post('lowongan'),
-				'id_alumni' => $this->input->post('alumni'),
-				'keterangan_kandidat' => $this->input->post('isi_lamaran'),
-				'hasil' => 'Sedang direview perusahaan',
-				'cv' => $config['file_name'],
-				];
-				$save=$this->model->save_lamaran('lamaran', $data);
-				print_r($save);
+		} else {
+			$data = [
+			'id_lowongan' => $this->input->post('lowongan'),
+			'id_alumni' => $this->input->post('alumni'),
+			'keterangan_kandidat' => $this->input->post('isi_lamaran'),
+			'hasil' => 'Sedang direview perusahaan',
+			'cv' => $config['file_name'],
+			];
+			$save=$this->model->save_lamaran('lamaran', $data);
+			print_r($save);
 
-				array('image_metadata' => $this->upload->data());
-				redirect('homepage/lowongan_detail/'.$this->input->post('lowongan'));
-			}
+			array('image_metadata' => $this->upload->data());
+			redirect('homepage/lowongan_detail/'.$this->input->post('lowongan'));
+		}
 	}
 }

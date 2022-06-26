@@ -53,33 +53,60 @@
 		<li class="nav-item">
 			<a class="nav-link" href="<?php echo base_url('homepage/struktur') ?>">Struktur Organisasi</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="<?php echo base_url('homepage/lowongan') ?>">Lowongan</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="<?php echo base_url('latian/index') ?>">Latian</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="<?php echo base_url('homepage/mitra') ?>">Mitra</a>
-		</li>
+		<?php 
+			$perusahaan_id = $this->db->where('id_user',$this->session->userdata('id_user'))->get('perusahaan')->row();
+			if ($this->session->userdata('role')=='perusahaan') { ?>
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo base_url('lowongan/index/'.$perusahaan_id->id_perusahaan) ?>">Lowongan</a>
+			</li>
+		<?php } else { ?>
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo base_url('homepage/lowongan/index') ?>">Lowongan</a>
+			</li>
+		<?php } ?>
+		<?php if ($this->session->userdata('role')!='perusahaan') { ?>
+			<?php $alumni=$this->db
+			->join("user","user.id_user=alumni.id_user")
+			->where("alumni.id_user",$this->session->userdata("id_user"))
+			->get("alumni")
+			->row()
+			->id_alumni ?>
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo base_url('lamaran/index/'.$alumni) ?>">Lamaran Anda</a>
+			</li>
+		<?php } ?>
+		<?php if ($this->session->userdata('role')!='perusahaan') { ?>
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo base_url('homepage/mitra') ?>">Mitra</a>
+			</li>
+		<?php }?>
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
 			<img src="<?php echo base_url('file/smk.png') ?>" width="50px" alt="" style="">
 			<span style="color:#fff;text-align:center" >SMK Muhammadiyah 1 Temanggung</span>
-			<?php if($this->session->userdata('role') == 'alumni') { ?>
-					<a href="<?php echo base_url('alumni/index') ?>" class="btn btn-success ml-2"><i class="nav-icon fas fa-dashboard"></i> Profile</a>
-			<a href="<?php echo base_url('auth/logout') ?>" class="btn btn-danger ml-2"><i class="nav-icon fas fa-sign-out-alt"></i> Logout</a>
-			<?php }elseif($this->session->userdata('role') == 'perusahaan'){?>
-					<a href="<?php echo base_url('perusahaan/index') ?>" class="btn btn-success ml-2"><i class="nav-icon fas fa-sign-in-alt"></i> Profile</a>
-			<a href="<?php echo base_url('auth/logout') ?>" class="btn btn-danger ml-2"><i class="nav-icon fas fa-sign-out-alt"></i> Logout</a>
-			<?php }elseif($this->session->userdata('role') == 'admin'){?>
-					<a href="<?php echo base_url('admin/index') ?>" class="btn btn-success ml-2"><i class="nav-icon fas fa-sign-in-alt"></i> Dashboard</a>
-			<a href="<?php echo base_url('auth/logout') ?>" class="btn btn-danger ml-2"><i class="nav-icon fas fa-sign-out-alt"></i> Logout</a>
-			<?php }
-			else{?>
-					<a href="<?php echo base_url('auth/index') ?>" class="btn btn-success ml-2"><i class="nav-icon fas fa-sign-in-alt"></i> Login</a>
-			<?php } ?>
+			<span class="dropdown">
+					<button class="btn btn-primary ml-2 dropdown-toggle" type="button" id="dropdownMenuButtonUserProfile" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="nav-icon fas fa-user"></i> 
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonUserProfile">
+					<?php if($this->session->userdata('role') == 'alumni') { ?>
+						<li><a class="dropdown-item" href="<?php echo base_url('alumni/index') ?>">Profile</a></li>
+						<li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Keluar</a></li>
+					<?php }elseif($this->session->userdata('role') == 'perusahaan'){?>
+						<li><a class="dropdown-item" href="<?php echo base_url('perusahaan/index') ?>">Profile</a></li>
+						<li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Keluar</a></li>
+					<?php }elseif($this->session->userdata('role') == 'admin'){?>
+						<li><a class="dropdown-item" href="<?php echo base_url('perusahaan/index') ?>">Dashboard</a></li>
+						<li><a class="dropdown-item" href="<?php echo base_url('admin/index') ?>">Keluar</a></li>
+					<?php }
+					else{?>
+							<li><a class="dropdown-item" href="<?php echo base_url('auth/index') ?>"><i class="nav-icon fas fa-sign-in-alt"></i> Masuk</a></li>
+							
+					<?php } ?>
+					</ul>
+				</span>
+			
             </li>
          <li>
 		 
