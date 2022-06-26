@@ -36,42 +36,42 @@ class Auth extends CI_Controller{
 			echo $this->session->set_flashdata('msg','Password harus terdiri lebih dari 6 karakter');
 			redirect('auth/register');
 		}else{
-			// if ($this->input->post('role')=='alumni'  && $user == null) {
-			// 	$data=[
-			// 		'username'=>$this->input->post('username'),
-			// 		'nama_user'=>$this->input->post('nama_user'),
-			// 		'password'=>md5($this->input->post('password')),
-			// 		'role'=>$this->input->post('role'),
-			// 	];
-			// 	$this->model->save_registrasi_data('user', $data);
-			// 	$data_alumni = [
-			// 		'id_user'=>$user_data,
-			// 		'nama_alumni' => $this->input->post('nama_user'),
-			// 		];
-			// 		$this->db->insert('alumni', $data_alumni);
-			// 	echo $this->session->set_flashdata('msg','Registrasi berhasil');
-			// 	redirect('auth/index');
-			// }
-			// elseif($this->input->post('role')=='perusahaan'   && $user == null){
-			// 	$data=[
-			// 		'username'=>$this->input->post('username'),
-			// 		'nama_user'=>$this->input->post('nama_user'),
-			// 		'password'=>md5($this->input->post('password')),
-			// 		'role'=>$this->input->post('role'),
-			// 	];
-			// 	$this->model->save_registrasi_data('user', $data);
-			// 	$data_alumni = [
-			// 		'id_user'=>$user_data,
-			// 		'nama_perusahaan' => $this->input->post('nama_user'),
-			// 		];
-			// 	$this->db->insert('perusahaan', $data_alumni);
-			// 	echo $this->session->set_flashdata('msg','Registrasi berhasil');
-			// 	redirect('auth/index');
-			// }
-			// else{
-			// 	echo $this->session->set_flashdata('msg','Registrasi Gagal, User sudah terdaftar');
-			// 	redirect('auth/index');
-			// }
+			if ($this->input->post('role')=='alumni'  && $user == null) {
+				$data=[
+					'username'=>$this->input->post('username'),
+					'nama_user'=>$this->input->post('nama_user'),
+					'password'=>md5($this->input->post('password')),
+					'role'=>$this->input->post('role'),
+				];
+				$this->model->save_registrasi_data('user', $data);
+				$data_alumni = [
+					'id_user'=>$user_data,
+					'nama_alumni' => $this->input->post('nama_user'),
+					];
+					$this->db->insert('alumni', $data_alumni);
+				echo $this->session->set_flashdata('msg','Registrasi berhasil');
+				redirect('auth/index');
+			}
+			elseif($this->input->post('role')=='perusahaan'   && $user == null){
+				$data=[
+					'username'=>$this->input->post('username'),
+					'nama_user'=>$this->input->post('nama_user'),
+					'password'=>md5($this->input->post('password')),
+					'role'=>$this->input->post('role'),
+				];
+				$this->model->save_registrasi_data('user', $data);
+				$data_alumni = [
+					'id_user'=>$user_data,
+					'nama_perusahaan' => $this->input->post('nama_user'),
+					];
+				$this->db->insert('perusahaan', $data_alumni);
+				echo $this->session->set_flashdata('msg','Registrasi berhasil');
+				redirect('auth/index');
+			}
+			else{
+				echo $this->session->set_flashdata('msg','Registrasi Gagal, User sudah terdaftar');
+				redirect('auth/index');
+			}
 		}
 		
 		

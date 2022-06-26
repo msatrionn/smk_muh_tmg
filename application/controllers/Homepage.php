@@ -48,9 +48,9 @@ class Homepage extends CI_Controller
         $data['pagination'] = $this->pagination->create_links();
  
         //load view mahasiswa view
-		$this->load->view('clients/layouts/header.php');
-		$this->load->view('clients/index.php',$data);
-		$this->load->view('clients/layouts/footer.php');
+		$this->load->view('layouts/header.php');
+		$this->load->view('layouts/home.php',$data);
+		$this->load->view('layouts/footer.php');
 
 	}
 

@@ -21,9 +21,9 @@ class Admin extends CI_Controller
 		$id_user=$this->input->post('id_user');
 		$data['user']=$this->db->where('role','alumni')
 		->or_where('role','perusahaan')->get('user')->result();
-		$this->load->view('layouts/head_admin.php');
+		$this->load->view('layouts/header.php');
 		$this->load->view('admin/user/index',$data);
-		$this->load->view('layouts/foot.php');
+		$this->load->view('layouts/footer.php');
 		
 	}
 	public function user_detail($id_user){
