@@ -12,7 +12,6 @@ class Hasil extends CI_Controller
 		$this->load->view('clients/layouts/footer.php');
 	}
 	public function update_hasil($id){
-		var_dump('cek');
 		$data=[
 			'hasil'=>$this->input->post('hasil')
 		];
