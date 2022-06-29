@@ -41,6 +41,13 @@
 	display: inline-block;
 	line-height: 1em;
 	}
+	#text-desc {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 12; /* number of lines to show */
+	-webkit-box-orient: vertical;
+	}
   </style>
   <body>
   <nav class="navbar navbar-expand-md navbar-dark " style="background: #0d8c71;">

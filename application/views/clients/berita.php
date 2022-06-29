@@ -95,6 +95,13 @@ a:hover{
    -webkit-line-clamp: 3; /* number of lines to show */
    -webkit-box-orient: vertical;
 }
+#text-desc-post {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
 .titl{
 	text-align: center;
 }
@@ -112,36 +119,91 @@ a:hover{
 }
 </style>
     
-<h2 class="titl">Review Berita SMK Muhammadiyah 1 Temanggung</h2>
 
-<div class="line">
-	<div class="inner-line"></div>
-</div>
-<div class="container bootstrap snippets bootdey">
-    <div class="row">
-	<?php foreach ($data->result() as $row) :?>
-		<div class="col-sm-4">
-		<div class="widget single-news">
-			<div class="image">
-			<img src="<?php echo base_url('file/news/'.$row->foto) ?>" height="200px" width="100%"  class="img-responsive">
-			<span class="gradient"></span>
+<div class="container">
+
+      <!--Section: Main info-->
+      <section class="mt-5 wow fadeIn" id="profil">
+
+      <h2 class="text-center py-4 my-4">Tentang SMK 1 Muhammadiyah Temanggung</h2>
+        <!--Grid row-->
+        <div class="row">
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+
+            <img src="<?= base_url('file/6.jpeg') ?>" class="img-profile img-fluid z-depth-1-half" alt="">
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+            <!-- Main heading -->
+            <h3 class="h3 mb-3">SMK Muhammadiyah 1 Temanggung</h3>
+            <p style="text-align:justify;" id="text-desc">SMK Muhammadiyah 1 Temanggung 
+						yang berlokasi di Jl Dr Sutomo No 288 Temanggung, dengan membuka jurusan Teknik Otomotif. 
+						Pendirian SMK Muhammadiyah 1 Temanggung tersebut berdasarkan surat dari Departemen pendidikan dan Kebudayaan 
+						Kantor Wilayah Propinsi Jawa Tengah tentang persetujuan pendirian / penyelenggaraan sekolah swasta nomor : 
+						0646/I03.08/MN/1999 tanggal 24 Mei 1999. SMK Muhammadiyah 1 Temanggung menempati dua lokasi yang berbeda yaitu 
+						lokasi 1 bertempat digedung milik Muhammadiyah yang dahulu ditempati SMA Muhammadiyah 1 Temanggung 
+						(Jl. Dr Sutomo No 288 Temanggung) dan lokasi kampus 2 bertempat di desa Tlogorejo, Temanggung berjarak 1,5 km 
+						dari lokasi pertama. Berdasarkan Instruksi Presiden (inpres) No 9 Tahun 2016 tentang Revitalisasi Sekolah 
+						Menengah Kejuruan (SMK) Dalam rangka meningkatkan kualitas dan daya saing sumber daya manusia Indonesia.
+						Peningkatan kualitas sumber daya manusia merupakan salah satu aspek penting dalam mencapai tujuan pembangunan 
+						nasional di segala bidang. Untuk membangun kualitas sumber daya manusia diperlukan peningkatan kualitas
+						pendidikan, peningkatan kesejahteraan manusia, dan pembentukan moral yang baik sehingga dapat menunjang 
+						tercapainya tujuan pembangunan nasional Sesuai dengan Visi dan Misi yang dicanangkan pada SMK Muhammadiyah I
+						Temanggung
+						</p><hr>
+			
+            <a href="<?= base_url('home/about') ?>" class="btn btn-primary btn-md">Lihat Lebih
+            </a>
+          </div>
+        </div>
+
+      </section>
+      <hr class="my-5">
+      <section id="berita">
+	  <h2 class="titl">Review Berita SMK Muhammadiyah 1 Temanggung</h2>
+
+        <h3 class="h3 text-center mb-5">Berita</h3>
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+			<div class="row" style="width: 100%;">
+					<?php foreach ($data->result()  as $key => $value) { ?>
+						<div class="col-md-6">
+							<div class="card mb-3">
+								<img id="img_size" class="card-img-top" src="<?= base_url('file/news/'.$value->foto) ?>" height="300px" style="object-fit: cover;" alt="Card image cap">
+								<div class="card-body">
+									<h5 class="card-title"><?= $value->judul ?></h5>
+									<p class="card-text" id="text-desc-post"><?= $value->deskripsi ?></p>
+									<div class="row">
+										<div class="col-md-10">
+											<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+										</div>
+										<div class="col-md-2">
+											<a href="<?= base_url('homepage/news_detail/'.$value->id) ?>" class="btn btn-primary">Lihat</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php } ?>
+				</div>
+			<div class="row mt-4" style="margin: 0 auto;">
+				<div class="col">
+					<!--Tampilkan pagination-->
+					<?php echo $pagination; ?>
+				</div>
 			</div>
-			<div class="details">
-			<div class="category"><a href=""><?php echo $row->judul ?></a></div>
-			<h3><a href="<?php echo base_url('homepage/news_detail/'.$row->id) ?>" class="text-desc"><?php echo $row->deskripsi ?></a></h3>
-			<time><?php echo $row->created_at ?></time>
-			</div>
-		</div>
-		</div>
-		<?php endforeach ?>
-	</div>
-</div>
-<div class="row">
-	<div class="col">
-		<!--Tampilkan pagination-->
-		<?php echo $pagination; ?>
-	</div>
-</div>
+        </div>
+        <!--/Grid row-->
+
+      </section>
+      <!--Section: More-->
+
+    </div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
