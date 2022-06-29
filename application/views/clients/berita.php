@@ -156,7 +156,7 @@ a:hover{
 						Temanggung
 						</p><hr>
 			
-            <a href="<?= base_url('home/about') ?>" class="btn btn-primary btn-md">Lihat Lebih
+            <a href="<?= base_url('homepage/tentang_kami') ?>" class="btn btn-primary btn-md">Lihat Lebih
             </a>
           </div>
         </div>
