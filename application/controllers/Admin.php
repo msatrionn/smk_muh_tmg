@@ -8,8 +8,12 @@ class Admin extends CI_Controller
 	}
 	public function index(){
 		if ($this->session->userdata('role') == 'admin') {
+			$data['lowongan']=$this->db->query("select count(id_lowongan) as total_lowongan from lowongan")->row();
+			$data['perusahaan']=$this->db->query("select count(id_perusahaan) as total_perusahaan from perusahaan")->row();
+			$data['alumni']=$this->db->query("select count(id_alumni) as total_alumni from alumni")->row();
+			$data['lamaran']=$this->db->query("select count(id_lamaran) as total_lamaran from lamaran")->row();
 			$this->load->view('layouts/head_admin.php');
-			$this->load->view('admin/index');
+			$this->load->view('admin/index',$data);
 			$this->load->view('layouts/foot.php');
 		}
 		else{
